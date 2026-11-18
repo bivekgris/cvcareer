@@ -97,7 +97,7 @@ export default function Page() {
     function readLocation() {
       const query = new URLSearchParams(location.search);
       const view = query.get('view');
-      if (view === 'builder' || (!pagesDemo && (view === 'pricing' || view === 'account'))) setScreen(view);
+      if (view === 'builder' || view === 'pricing' || (!pagesDemo && view === 'account')) setScreen(view);
       else setScreen('home');
       if (pagesDemo) return;
       if (query.get('checkout') === 'success') {
@@ -296,10 +296,8 @@ export default function Page() {
         </button>
         <nav aria-label="Main navigation">
           <button onClick={() => openBuilder('design')}>Templates</button>
-          {!pagesDemo && <>
-            <button onClick={() => navigate('pricing')} aria-current={screen === 'pricing' ? 'page' : undefined}>Pricing</button>
-            <button onClick={() => navigate('account')} aria-current={screen === 'account' ? 'page' : undefined}>Account</button>
-          </>}
+          <button onClick={() => navigate('pricing')} aria-current={screen === 'pricing' ? 'page' : undefined}>Pricing</button>
+          {!pagesDemo && <button onClick={() => navigate('account')} aria-current={screen === 'account' ? 'page' : undefined}>Account</button>}
         </nav>
         <button className="nav-action" onClick={() => openBuilder()}>Open builder <ArrowRight size={16} /></button>
       </div>
@@ -329,8 +327,8 @@ export default function Page() {
       </section>
     </main>}
 
-    {!pagesDemo && screen === 'pricing' && <main className="shell pricing-page">
-      <div className="center-intro"><h1>Plans for your job search</h1><p>Resume editing and PDF exports are free.</p></div>
+    {screen === 'pricing' && <main className="shell pricing-page">
+      <div className="center-intro"><h1>Plans for your job search</h1><p>{pagesDemo ? 'The free builder is available now. Paid plans are shown for preview.' : 'Resume editing and PDF exports are free.'}</p></div>
       <div className="price-grid">
         <div className="price-card">
           <h2>Free Builder</h2>
@@ -342,11 +340,11 @@ export default function Page() {
           <h2>{plan.name}</h2>
           <div className="price">{plan.price} <small>{plan.period}</small></div>
           <ul>{plan.features.map(feature => <li key={feature}><Check />{feature}</li>)}</ul>
-          <button className={'btn full ' + (plan.id === 'pack' ? 'primary' : 'dark')} disabled={buying}
-            onClick={() => void checkout(plan.id)}>{plan.id === 'pack' ? 'Choose application pack' : 'Choose Pro'} <ArrowRight size={16} /></button>
+          {!pagesDemo && <button className={'btn full ' + (plan.id === 'pack' ? 'primary' : 'dark')} disabled={buying}
+            onClick={() => void checkout(plan.id)}>{plan.id === 'pack' ? 'Choose application pack' : 'Choose Pro'} <ArrowRight size={16} /></button>}
         </div>)}
       </div>
-      <p className="pricing-disclaimer">Checkout is in test mode. Each application credit covers one tailored resume and one matching cover letter.</p>
+      <p className="pricing-disclaimer">{pagesDemo ? 'Planned pricing in AUD.' : 'Checkout is in test mode.'} Each application credit covers one tailored resume and one matching cover letter.</p>
     </main>}
 
     {!pagesDemo && screen === 'account' && <AccountPanel key={session?.user.id ?? 'guest'} client={client} session={session} draft={draft}
