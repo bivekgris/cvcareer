@@ -1,4 +1,4 @@
-# Hiredly AI
+# CVCareer
 
 A Next.js resume builder for Australian job seekers. The free workspace includes live preview, Classic, Modern and Minimal templates, browser autosave, JSON backups and A4 PDF export.
 
@@ -18,7 +18,7 @@ To check the production build, stop the development server and run `npm.cmd run 
 
 ## Publish a public demo on GitHub Pages
 
-In the public GitHub repository, choose **Settings → Pages → Source → GitHub Actions**. Run **Publish the Hiredly AI demo** from the Actions tab to deploy the first version. Future pushes to the main branch redeploy automatically. GitHub displays the public URL under **Settings → Pages** and in the workflow's deployment result.
+In the public GitHub repository, choose **Settings → Pages → Source → GitHub Actions**. Run **Publish the CVCareer demo** from the Actions tab to deploy the first version. Future pushes to the main branch redeploy automatically. GitHub displays the public URL under **Settings → Pages** and in the workflow's deployment result.
 
 The Pages build includes the browser-based editor, templates, PDF controls and sample application workflow. It omits live AI, accounts and checkout. Run `npm.cmd run build:pages` to generate the static files locally in `out/`. For a project subpath in a local build, set `PAGES_BASE_PATH` to a value such as `/hiredly-ai-demo`. The workflow gets this path from GitHub automatically.
 

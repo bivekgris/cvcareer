@@ -290,9 +290,9 @@ export default function Page() {
   return <>
     <header className="site-header">
       <div className="shell nav">
-        <button className="logo" onClick={() => navigate('home')} aria-label="Hiredly AI home">
+        <button className="logo" onClick={() => navigate('home')} aria-label="CVCareer home">
           <span className="logo-icon"><FileCheck2 size={19} /></span>
-          <span>hiredly<span className="logo-dot">.</span><span className="logo-ai">ai</span></span>
+          <span>CVCareer</span>
         </button>
         <nav aria-label="Main navigation">
           <button onClick={() => openBuilder('design')}>Templates</button>
@@ -456,6 +456,6 @@ export default function Page() {
       {review && <article className="cover-print"><h1>{resume.name}</h1><div>{review.application.coverLetter}</div></article>}
     </main>}
     {notice && <div role="status" className="toast"><span>{notice}</span><button onClick={() => notify('')} aria-label="Dismiss message"><X size={16} /></button></div>}
-    {screen !== 'builder' && <footer className="footer"><div className="shell">© {new Date().getFullYear()} Hiredly AI</div></footer>}
+    {screen !== 'builder' && <footer className="footer"><div className="shell">© {new Date().getFullYear()} CVCareer</div></footer>}
   </>;
 }

@@ -1,4 +1,4 @@
-name: Publish the Hiredly AI demo
+name: Publish the CVCareer demo
 
 on:
   push:
